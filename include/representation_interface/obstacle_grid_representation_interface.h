@@ -91,8 +91,8 @@ class ObstacleGridRepresentationInterface: public RepresentationInterface<double
   virtual Eigen::VectorXd GetGradient(const Eigen::VectorXd &query)=0;
 };
 
-}  // namepsace ca
 }  // namespace representation_interface
+}  // namepsace ca
 
 
 #endif  // REPRESENTATION_INTERFACE_INCLUDE_REPRESENTATION_INTERFACE_INTERFACE_BASE_H
