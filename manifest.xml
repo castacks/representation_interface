@@ -1,0 +1,15 @@
+<package>
+  <description brief="representation_interface">
+
+     representation_interface
+
+  </description>
+  <author>aeroscout</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/representation_interface</url>
+  <depend package="roscpp"/>
+
+</package>
+
+
