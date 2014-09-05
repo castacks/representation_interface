@@ -5,8 +5,8 @@
  *      Author: Sankalp Arora
  */
 
-#ifndef REPRESENTATION_INTERFACE_INCLUDE_REPRESENTATION_INTERFACE_INTERFACE_BASE_H
-#define REPRESENTATION_INTERFACE_INCLUDE_REPRESENTATION_INTERFACE_INTERFACE_BASE_H
+#ifndef REPRESENTATION_INTERFACE_INCLUDE_REPRESENTATION_INTERFACE_BASE_H
+#define REPRESENTATION_INTERFACE_INCLUDE_REPRESENTATION_INTERFACE_BASE_H
 
 #include <Eigen/Dense>
 #include <vector>
@@ -47,13 +47,13 @@ class RepresentationInterface{
    * @param query a vector of Eigen columns vector representing a general query index.
    * @return a vector of values at query locations.
    */
-  virtual std::vector<T> GetValue(const std::vector<Eigen::VectorXd> &query, uint8 mode, double threshold) = 0;
+  virtual std::vector<T> GetValue(const std::vector<Eigen::VectorXd> &query) = 0;
   /** \brief Get value at query indices.
    *
    * @param query a vector of Eigen columns vector representing general query indices.
    * @return a vector of values at query locations.
    */
-  virtual std::vector<T> GetValue(const std::vector<Eigen::VectorXi> &query, uint8 mode, double threshold) = 0;
+  virtual std::vector<T> GetValue(const std::vector<Eigen::VectorXi> &query) = 0;
   /**
    * \brief Is the query location valid.
    * @param query
