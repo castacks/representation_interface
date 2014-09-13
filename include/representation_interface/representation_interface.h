@@ -102,6 +102,19 @@ class RepresentationInterface{
    * @return resolution
    */
   virtual Eigen::VectorXd GetResolution(const Eigen::VectorXi &query)=0;
+  /**
+   * \brief returns the frame in which the representation exists,
+   * @param
+   * @return the frames in which the representation exists
+   */
+  virtual std::string get_frame()=0;
+
+  /**
+   * \brief initializes the interface class returns false if can't initialize
+   * @param
+   * @return true if initialization was successful, false otherwise
+   */
+  virtual bool initialize()=0;
 };
 
 }  // namepsace ca
