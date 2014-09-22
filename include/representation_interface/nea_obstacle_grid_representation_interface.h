@@ -27,10 +27,28 @@ namespace representation_interface{
 
 class NEAObstacleGridRepresentationInterface: public ObstacleGridRepresentationInterface{
  private:
-  shared_ptr<NEA::MappingClient> mapping_client_;
+  //std::shared_ptr<NEA::MappingClient> mapping_client_;
+  NEA::MappingClient *mapping_client_;
  public:
   NEAObstacleGridRepresentationInterface(){};
   virtual ~NEAObstacleGridRepresentationInterface(){};
+
+  //---------------------------------------------------------------------------------------------//
+  virtual bool GetValue(const Eigen::Vector3d  &query, double &value);
+   virtual bool GetValue(const Eigen::Vector3f  &query, double &value);
+   virtual bool GetValue(const Eigen::Vector3i  &query, double &value);
+   virtual std::vector<std::pair<double, bool> > GetValue(const std::vector<Eigen::Vector3d > &query);
+   virtual std::vector<std::pair<double, bool> > GetValue(const std::vector<Eigen::Vector3i > &query);
+   virtual bool IsValid(const Eigen::Vector3d  &query);
+   virtual bool IsValid(const Eigen::Vector3i  &query);
+   virtual Eigen::Vector3d GetMinQuery();
+   virtual Eigen::Vector3d GetMaxQuery();
+   virtual Eigen::Vector3d GetResolution(const Eigen::Vector3d &query);
+   virtual Eigen::Vector3d GetResolution(const Eigen::Vector3i &query);
+
+  //---------------------------------------------------------------------------------------------//
+
+
   /**
    * \brief check a vector of locations for collisions, the function starts from
    *  top of the vector and breaks on the first collision as it goes through the
@@ -78,16 +96,21 @@ class NEAObstacleGridRepresentationInterface: public ObstacleGridRepresentationI
     * @param query vector of vectorxd
     * @return gradients in form of vector of vectorxd
     */
-   virtual std::vector<Eigen::Vector3d> GetGradient(const std::vector<Eigen::Vector3d> &query);
+  virtual std::vector<std::pair<Eigen::Vector3d,bool> > GetGradient(const std::vector<Eigen::Vector3d> &query);
  /**
    * \brief Returns the gradient at a  query locations
    * @param query
    * @return gradient
    */
-  virtual std::vector<std::pair<Eigen::Vector3d,bool>> GetGradient(const Eigen::Vector3d &query, Eigen::Vector3d& gradient);
+  virtual bool GetGradient(const Eigen::Vector3d &query, Eigen::Vector3d &value);
 
+  /*
+  void set_mapping_client_pointer(std::shared_ptr<NEA::MappingClient> mapping_client)
+  {
+    mapping_client_ = mapping_client;
+  }*/
 
-  void set_mapping_client_pointer(shared_ptr<NEA::MappingClient> mapping_client)
+  void set_mapping_client_pointer(NEA::MappingClient* mapping_client)
   {
     mapping_client_ = mapping_client;
   }

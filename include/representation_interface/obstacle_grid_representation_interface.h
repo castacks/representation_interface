@@ -34,7 +34,6 @@ class ObstacleGridRepresentationInterface: public RepresentationInterface<double
  public:
   ObstacleGridRepresentationInterface() {};
   virtual ~ObstacleGridRepresentationInterface() {};
-
   /**
    * \brief check a vector of locations for collisions, the function starts from
    *  top of the vector and breaks on the first collision as it goes through the
@@ -82,7 +81,7 @@ class ObstacleGridRepresentationInterface: public RepresentationInterface<double
     * @param query vector of vectorxd
     * @return gradients in form of vector of vectorxd
     */
-   virtual std::vector<std::pair<Eigen::Vector3d,bool>> GetGradient(const std::vector<Eigen::Vector3d> &query)=0;
+   virtual std::vector<std::pair<Eigen::Vector3d,bool> > GetGradient(const std::vector<Eigen::Vector3d> &query)=0;
  /**
    * \brief Returns the gradient at a  query locations
    * @param query

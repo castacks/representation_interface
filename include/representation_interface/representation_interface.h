@@ -53,13 +53,13 @@ class RepresentationInterface{
    * @param query a vector of Eigen columns vector representing a general query index.
    * @return a vector of values at query locations.
    */
-  virtual std::vector<std::pair<T, bool>> GetValue(const std::vector<Eigen::Matrix<double, N, 1> > &query) = 0;
+  virtual std::vector<std::pair<T, bool> > GetValue(const std::vector<Eigen::Matrix<double, N, 1> > &query) = 0;
   /** \brief Get value at query indices.
    *
    * @param query a vector of Eigen columns vector representing general query indices.
    * @return a vector of values at query locations.
    */
-  virtual std::vector<std::pair<T, bool>> GetValue(const std::vector<Eigen::Matrix<int, N, 1> > &query) = 0;
+  virtual std::vector<std::pair<T, bool> > GetValue(const std::vector<Eigen::Matrix<int, N, 1> > &query) = 0;
   /**
    * \brief Is the query location valid.
    * @param query
@@ -84,18 +84,6 @@ class RepresentationInterface{
    * @return maximum valid query location.
    */
   virtual Eigen::Matrix<double, N, 1> GetMaxQuery()=0;
-  /**
-   * \brief Returns the minimum valid query indices
-   * @param
-   * @return minimum valid query location.
-   */
-  virtual Eigen::Matrix<int, N, 1> GetMinQuery() = 0;
-  /**
-   * \brief Returns the maximum valid query indices
-   * @param
-   * @return maximum valid query location.
-   */
-  virtual Eigen::Matrix<int, N, 1> GetMaxQuery()=0;
   /**
    * \brief Returns the resolution at which the grid locally operates at that location
    * @param query

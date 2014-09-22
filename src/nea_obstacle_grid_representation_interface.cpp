@@ -29,9 +29,9 @@ bool NEAObstacleGridRepresentationInterface::GetValue(const Eigen::Vector3i  &qu
 }
 
 
-std::vector<std::pair<double, bool>> NEAObstacleGridRepresentationInterface::GetValue(const std::vector<Eigen::Vector3d> &query)
+std::vector<std::pair<double, bool> > NEAObstacleGridRepresentationInterface::GetValue(const std::vector<Eigen::Vector3d> &query)
 {
-  std::vector<std::pair<double, bool>> return_vector;
+  std::vector<std::pair<double, bool> > return_vector;
   for(auto it=query.begin();it<query.end();it++)
   {
     int occupancy_level=0;
@@ -81,24 +81,6 @@ Eigen::Vector3d NEAObstacleGridRepresentationInterface::GetMaxQuery()
   Eigen::Vector3d v;
   return v;
 }
-
-Eigen::Vector3i NEAObstacleGridRepresentationInterface::GetMinQuery()
-{
-  // Hugh can we get this?
-  BOOST_ASSERT_MSG(0, "GetMinQuery() is not implemented for NEAObstacleGridRepresentationInterface");
-  Eigen::Vector3i v;
-  return v;
-}
-
-
-Eigen::Vector3i NEAObstacleGridRepresentationInterface::GetMaxQuery()
-{
-  // Hugh can we get this?
-  BOOST_ASSERT_MSG(0, "GetMaxQuery() is not implemented for NEAObstacleGridRepresentationInterface");
-  Eigen::Vector3i v;
-  return v;
-}
-
 
 Eigen::Vector3d GetResolution(const Eigen::Vector3d &query)
 {
@@ -165,13 +147,13 @@ CollisionCheckReturn NEAObstacleGridRepresentationInterface::CollisionCheck(cons
   }
 }
 
-CollisionCheckReturn NEAObstacleGridRepresentationInterface::CollisionCheck(const std::vector<Eigen::VectorXi> &query,
+CollisionCheckReturn NEAObstacleGridRepresentationInterface::CollisionCheck(const std::vector<Eigen::Vector3i> &query,
                                               bool greater, const double threshold)
 {
   BOOST_ASSERT_MSG(0, "CollisionCheck with INT queries is not defined for nea occupancy grid");
 }
 
-CollisionCheckReturn NEAObstacleGridRepresentationInterface::CollisionCheckLine(const Eigen::VectorXd &start,const Eigen::VectorXd &end,
+CollisionCheckReturn NEAObstacleGridRepresentationInterface::CollisionCheckLine(const Eigen::Vector3d &start,const Eigen::Vector3d &end,
                                              const bool greater,const double threshold)
 {
  // hugh -- getOccupancyResolution(); does it give us the spatial resolution?
@@ -185,13 +167,13 @@ CollisionCheckReturn NEAObstacleGridRepresentationInterface::CollisionCheckLine(
 }
 
 
-std::vector<Eigen::Vector3d> NEAObstacleGridRepresentationInterface::GetGradient(const std::vector<Eigen::VectorXd> &query)
+std::vector<std::pair<Eigen::Vector3d,bool> > NEAObstacleGridRepresentationInterface::GetGradient(const std::vector<Eigen::Vector3d> &query)
 {
   BOOST_ASSERT_MSG(0, "Gradient is not defined for nea occupancy grid");
 }
 
 
-Eigen::Vector3d NEAObstacleGridRepresentationInterface::GetGradient(const Eigen::Vector3d &query)
+bool NEAObstacleGridRepresentationInterface::GetGradient(const Eigen::Vector3d &query, Eigen::Vector3d &value)
 {
   BOOST_ASSERT_MSG(0, "Gradient is not defined for nea occupancy grid");
 }
