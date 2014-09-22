@@ -25,7 +25,7 @@ namespace representation_interface{
  */
 
 
-class NEAObstacleGridRepresentationInterface: public ObstacleGridRepresentationInterface{
+class NEAObstacleDistanceMapRepresentationInterface: public ObstacleGridRepresentationInterface{
  private:
   std::shared_ptr<NEA::MappingClient> mapping_client_;
 
@@ -110,7 +110,7 @@ class NEAObstacleGridRepresentationInterface: public ObstacleGridRepresentationI
     mapping_client_ = mapping_client;
   }*/
 
-  void set_mapping_client_pointer(std::shared_ptr<NEA::MappingClient> mapping_client)
+  void set_mapping_client_pointer(NEA::MappingClient* mapping_client)
   {
     mapping_client_ = mapping_client;
   }
