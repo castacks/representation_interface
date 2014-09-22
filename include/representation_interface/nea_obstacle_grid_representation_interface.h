@@ -9,33 +9,28 @@
 #define REPRESENTATION_INTERFACE_INCLUDE_NEA_OBSTACLE_GRID_REPRESENTATION_INTERFACE_H
 
 #include <vector>
+#include <memory>
 #include <utility>
 #include <Eigen/Dense>
 #include "perception_interface/mapping_client.h"
+#include "representation_interface/obstacle_grid_representation_interface.h"
 
 namespace ca {
 namespace representation_interface{
 
-/*
- * type declaration for response to collision queries, the first member of
- *  the pair is vector of values encountered while collision checking, the
- *  second member is true if the query collides.
- */
-typedef std::pair <std::vector<double>, bool> CollisionCheckReturn;
 
 /**
- * \brief This is an interface class that captures how modules
- * generally interact with the a world grid representation that
- * encapsulates obstacles in one way or the other.
- * For example, occupancy gridmap, distance map
+ * \brief
+ * Collision check with the nea obstacle grid
  */
 
 
-class NEAObstacleGridRepresentation: public RepresentationInterface<double>{
+class NEAObstacleGridRepresentationInterface: public ObstacleGridRepresentationInterface{
+ private:
+  shared_ptr<NEA::MappingClient> mapping_client_;
  public:
-  ObstacleGridRepresentationInterface() {};
-  virtual ~ObstacleGridRepresentationInterface() {};
-
+  NEAObstacleGridRepresentationInterface(){};
+  virtual ~NEAObstacleGridRepresentationInterface(){};
   /**
    * \brief check a vector of locations for collisions, the function starts from
    *  top of the vector and breaks on the first collision as it goes through the
@@ -48,8 +43,8 @@ class NEAObstacleGridRepresentation: public RepresentationInterface<double>{
    *
    * @return CollisionCheckReturn, look at typedef definition for details
    */
-  virtual CollisionCheckReturn CollisionCheck(const std::vector<Eigen::VectorXd> &query,
-                                              bool greater, const double threshold)=0;
+  CollisionCheckReturn CollisionCheck(const std::vector<Eigen::Vector3d> &query,
+                                              bool greater, const double threshold);
   /**
    * \brief check a vector of indices for collisions, the function starts from
    *  top of the vector and breaks on the first collision as it goes through the
@@ -62,8 +57,8 @@ class NEAObstacleGridRepresentation: public RepresentationInterface<double>{
    *
    * @return CollisionCheckReturn, look at typedef definition for details
    */
-  virtual CollisionCheckReturn CollisionCheck(const std::vector<Eigen::VectorXi> &query,
-                                              bool greater, const double threshold)=0;
+  virtual CollisionCheckReturn CollisionCheck(const std::vector<Eigen::Vector3i> &query,
+                                              bool greater, const double threshold);
 
   /**
    * \brief check a line for collisions
@@ -75,25 +70,24 @@ class NEAObstacleGridRepresentation: public RepresentationInterface<double>{
    *
    * @return CollisionCheckReturn, look at typedef definition for details
    */
-  virtual CollisionCheckReturn CollisionCheckLine(const Eigen::VectorXd &start,const Eigen::VectorXd &end,
-                                             const bool greater,const double threshold)=0;
+  virtual CollisionCheckReturn CollisionCheckLine(const Eigen::Vector3d &start,const Eigen::Vector3d &end,
+                                             const bool greater,const double threshold);
 
   /**
     * \brief Returns the gradient at a vector of query locations
     * @param query vector of vectorxd
     * @return gradients in form of vector of vectorxd
     */
-   virtual std::vector<Eigen::VectorXd> GetGradient(const std::vector<Eigen::VectorXd> &query)=0;
+   virtual std::vector<Eigen::Vector3d> GetGradient(const std::vector<Eigen::Vector3d> &query);
  /**
    * \brief Returns the gradient at a  query locations
    * @param query
    * @return gradient
    */
-  virtual Eigen::VectorXd GetGradient(const Eigen::VectorXd &query)=0;
+  virtual std::vector<std::pair<Eigen::Vector3d,bool>> GetGradient(const Eigen::Vector3d &query, Eigen::Vector3d& gradient);
 
-  NEA::MappingClient *mapping_client_;
 
-  void set_mapping_client_pointer(NEA::MappingClient *mapping_client)
+  void set_mapping_client_pointer(shared_ptr<NEA::MappingClient> mapping_client)
   {
     mapping_client_ = mapping_client;
   }
@@ -113,4 +107,4 @@ class NEAObstacleGridRepresentation: public RepresentationInterface<double>{
 }  // namepsace ca
 
 
-#endif  // REPRESENTATION_INTERFACE_INCLUDE_REPRESENTATION_INTERFACE_INTERFACE_BASE_H
+#endif  // REPRESENTATION_INTERFACE_INCLUDE_NEA_OBSTACLE_GRID_REPRESENTATION_INTERFACE_H

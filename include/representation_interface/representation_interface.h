@@ -23,7 +23,8 @@ namespace representation_interface{
  * if one wants to switch to using nea grid, we wrap it in this interface and do not change
  * any of code that uses this interface.
  */
-template <class T>
+
+template <class T,int N>
 class RepresentationInterface{
  public:
   RepresentationInterface() {};
@@ -34,74 +35,79 @@ class RepresentationInterface{
    * @param query Eigen column vector representing a general query
    * @return value at location
    */
-  virtual T GetValue(const Eigen::VectorXd &query) = 0;
-
+  virtual bool GetValue(const Eigen::Matrix<double, N, 1>  &query, T &value) = 0;
+  /** \brief Get value at query location.
+   *
+   * @param query Eigen column vector representing a general query
+   * @return value at location
+   */
+  virtual bool GetValue(const Eigen::Matrix<float, N, 1>  &query, T &value) = 0;
   /** \brief Get value at query index.
    *
    * @param query Eigen column vector representing a general query
    * @return value at location
    */
-  virtual T GetValue(const Eigen::VectorXi &query) = 0;
+  virtual bool GetValue(const Eigen::Matrix<int, N, 1>  &query, T &value) = 0;
   /** \brief Get value at query locations.
    *
    * @param query a vector of Eigen columns vector representing a general query index.
    * @return a vector of values at query locations.
    */
-  virtual std::vector<T> GetValue(const std::vector<Eigen::VectorXd> &query) = 0;
+  virtual std::vector<std::pair<T, bool>> GetValue(const std::vector<Eigen::Matrix<double, N, 1> > &query) = 0;
   /** \brief Get value at query indices.
    *
    * @param query a vector of Eigen columns vector representing general query indices.
    * @return a vector of values at query locations.
    */
-  virtual std::vector<T> GetValue(const std::vector<Eigen::VectorXi> &query) = 0;
+  virtual std::vector<std::pair<T, bool>> GetValue(const std::vector<Eigen::Matrix<int, N, 1> > &query) = 0;
   /**
    * \brief Is the query location valid.
    * @param query
    * @return boolean whether the query is valid or not
    */
-  virtual bool IsValid(const Eigen::VectorXd &query) = 0;
+  virtual bool IsValid(const Eigen::Matrix<double, N, 1>  &query) = 0;
   /**
     * \brief Are the query indices valid.
     * @param query
     * @return boolean whether the query is valid or not
     */
-  virtual bool IsValid(const Eigen::VectorXi &query) = 0;
+  virtual bool IsValid(const Eigen::Matrix<int, N, 1>  &query) = 0;
   /**
    * \brief Returns the minimum valid query that can be made to the representation
    * @param
    * @return minimum valid query location.
    */
-  virtual Eigen::VectorXd GetMinQuery() = 0;
+  virtual Eigen::Matrix<double, N, 1> GetMinQuery() = 0;
   /**
    * \brief Returns the maximum valid query
    * @param
    * @return maximum valid query location.
    */
-  virtual Eigen::VectorXd GetMaxQuery()=0;
+  virtual Eigen::Matrix<double, N, 1> GetMaxQuery()=0;
   /**
    * \brief Returns the minimum valid query indices
    * @param
    * @return minimum valid query location.
    */
-  virtual Eigen::VectorXi GetMinQuery() = 0;
+  virtual Eigen::Matrix<int, N, 1> GetMinQuery() = 0;
   /**
    * \brief Returns the maximum valid query indices
    * @param
    * @return maximum valid query location.
    */
-  virtual Eigen::VectorXi GetMaxQuery()=0;
+  virtual Eigen::Matrix<int, N, 1> GetMaxQuery()=0;
   /**
    * \brief Returns the resolution at which the grid locally operates at that location
    * @param query
    * @return resolution
    */
-  virtual Eigen::VectorXd GetResolution(const Eigen::VectorXd &query)=0;
+  virtual Eigen::Matrix<double, N, 1> GetResolution(const Eigen::Matrix<double, N, 1> &query)=0;
   /**
    * \brief Returns the resolution at which the grid locally operates at that index
    * @param query
    * @return resolution
    */
-  virtual Eigen::VectorXd GetResolution(const Eigen::VectorXi &query)=0;
+  virtual Eigen::Matrix<double, N, 1> GetResolution(const Eigen::Matrix<int, N, 1> &query)=0;
   /**
    * \brief returns the frame in which the representation exists,
    * @param

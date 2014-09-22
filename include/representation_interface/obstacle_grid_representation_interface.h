@@ -11,6 +11,7 @@
 #include <vector>
 #include <utility>
 #include <Eigen/Dense>
+#include <representation_interface/representation_interface.h>
 
 namespace ca {
 namespace representation_interface{
@@ -29,8 +30,7 @@ typedef std::pair <std::vector<double>, bool> CollisionCheckReturn;
  * For example, occupancy gridmap, distance map
  */
 
-template <class T>
-class ObstacleGridRepresentationInterface: public RepresentationInterface<double>{
+class ObstacleGridRepresentationInterface: public RepresentationInterface<double,3>{
  public:
   ObstacleGridRepresentationInterface() {};
   virtual ~ObstacleGridRepresentationInterface() {};
@@ -47,7 +47,7 @@ class ObstacleGridRepresentationInterface: public RepresentationInterface<double
    *
    * @return CollisionCheckReturn, look at typedef definition for details
    */
-  virtual CollisionCheckReturn CollisionCheck(const std::vector<Eigen::VectorXd> &query,
+  virtual CollisionCheckReturn CollisionCheck(const std::vector<Eigen::Vector3d> &query,
                                               bool greater, const double threshold)=0;
   /**
    * \brief check a vector of indices for collisions, the function starts from
@@ -61,7 +61,7 @@ class ObstacleGridRepresentationInterface: public RepresentationInterface<double
    *
    * @return CollisionCheckReturn, look at typedef definition for details
    */
-  virtual CollisionCheckReturn CollisionCheck(const std::vector<Eigen::VectorXi> &query,
+  virtual CollisionCheckReturn CollisionCheck(const std::vector<Eigen::Vector3i> &query,
                                               bool greater, const double threshold)=0;
 
   /**
@@ -74,7 +74,7 @@ class ObstacleGridRepresentationInterface: public RepresentationInterface<double
    *
    * @return CollisionCheckReturn, look at typedef definition for details
    */
-  virtual CollisionCheckReturn CollisionCheckLine(const Eigen::VectorXd &start,const Eigen::VectorXd &end,
+  virtual CollisionCheckReturn CollisionCheckLine(const Eigen::Vector3d &start,const Eigen::Vector3d &end,
                                              const bool greater,const double threshold)=0;
 
   /**
@@ -82,17 +82,17 @@ class ObstacleGridRepresentationInterface: public RepresentationInterface<double
     * @param query vector of vectorxd
     * @return gradients in form of vector of vectorxd
     */
-   virtual std::vector<Eigen::VectorXd> GetGradient(const std::vector<Eigen::VectorXd> &query)=0;
+   virtual std::vector<std::pair<Eigen::Vector3d,bool>> GetGradient(const std::vector<Eigen::Vector3d> &query)=0;
  /**
    * \brief Returns the gradient at a  query locations
    * @param query
    * @return gradient
    */
-  virtual Eigen::VectorXd GetGradient(const Eigen::VectorXd &query)=0;
+  virtual bool GetGradient(const Eigen::Vector3d &query, Eigen::Vector3d &value)=0;
 };
 
 }  // namespace representation_interface
 }  // namepsace ca
 
 
-#endif  // REPRESENTATION_INTERFACE_INCLUDE_REPRESENTATION_INTERFACE_INTERFACE_BASE_H
+#endif  // REPRESENTATION_INTERFACE_INCLUDE_OBSTACLE_GRID_REPRESENTATION_INTERFACE_H
