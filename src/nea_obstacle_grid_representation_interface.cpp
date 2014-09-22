@@ -82,7 +82,7 @@ Eigen::Vector3d NEAObstacleGridRepresentationInterface::GetMaxQuery()
   return v;
 }
 
-Eigen::Vector3d GetResolution(const Eigen::Vector3d &query)
+Eigen::Vector3d NEAObstacleGridRepresentationInterface::GetResolution(const Eigen::Vector3d &query)
 {
   // Hugh can we get this?
     BOOST_ASSERT_MSG(0, "GetResolution() is not implemented for NEAObstacleGridRepresentationInterface");
@@ -90,7 +90,7 @@ Eigen::Vector3d GetResolution(const Eigen::Vector3d &query)
     return v;
 }
 
-Eigen::Vector3d GetResolution(const Eigen::Vector3i &query)
+Eigen::Vector3d NEAObstacleGridRepresentationInterface::GetResolution(const Eigen::Vector3i &query)
 {
   // Hugh can we get this?
     BOOST_ASSERT_MSG(0, "GetResolution() is not implemented for NEAObstacleGridRepresentationInterface");

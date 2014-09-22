@@ -94,7 +94,7 @@ set(CMAKE_BUILD_TYPE "Debug")
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
   INCLUDE_DIRS include
-  LIBRARIES nea_obstacle_grid_representation
+  LIBRARIES nea_obstacle_grid_representation nea_distance_map_representation
   CATKIN_DEPENDS roscpp perception_interface
   #DEPENDS system_lib
 )
@@ -114,6 +114,11 @@ include_directories(
 
 add_library(nea_obstacle_grid_representation src/nea_obstacle_grid_representation_interface.cpp)
 target_link_libraries(nea_obstacle_grid_representation
+  ${catkin_LIBRARIES}
+)
+
+add_library(nea_distance_map_representation src/nea_distance_map_representation_interface.cpp)
+target_link_libraries(nea_distance_map_representation
   ${catkin_LIBRARIES}
 )
 

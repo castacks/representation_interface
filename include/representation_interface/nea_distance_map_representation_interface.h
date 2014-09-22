@@ -5,8 +5,8 @@
  *      Author: Sankalp Arora
  */
 
-#ifndef REPRESENTATION_INTERFACE_INCLUDE_NEA_OBSTACLE_GRID_REPRESENTATION_INTERFACE_H
-#define REPRESENTATION_INTERFACE_INCLUDE_NEA_OBSTACLE_GRID_REPRESENTATION_INTERFACE_H
+#ifndef REPRESENTATION_INTERFACE_INCLUDE_NEA_DISTANCE_MAP_REPRESENTATION_INTERFACE_H
+#define REPRESENTATION_INTERFACE_INCLUDE_NEA_DISTANCE_MAP_REPRESENTATION_INTERFACE_H
 
 #include <vector>
 #include <memory>
@@ -25,13 +25,13 @@ namespace representation_interface{
  */
 
 
-class NEAObstacleDistanceMapRepresentationInterface: public ObstacleGridRepresentationInterface{
+class NEADistanceMapRepresentationInterface: public ObstacleGridRepresentationInterface{
  private:
   std::shared_ptr<NEA::MappingClient> mapping_client_;
 
  public:
-  NEAObstacleGridRepresentationInterface(){};
-  virtual ~NEAObstacleGridRepresentationInterface(){};
+  NEADistanceMapRepresentationInterface(){};
+  virtual ~NEADistanceMapRepresentationInterface(){};
 
   //---------------------------------------------------------------------------------------------//
   virtual bool GetValue(const Eigen::Vector3d  &query, double &value);
@@ -110,7 +110,7 @@ class NEAObstacleDistanceMapRepresentationInterface: public ObstacleGridRepresen
     mapping_client_ = mapping_client;
   }*/
 
-  void set_mapping_client_pointer(NEA::MappingClient* mapping_client)
+  void set_mapping_client_pointer(std::shared_ptr<NEA::MappingClient> mapping_client)
   {
     mapping_client_ = mapping_client;
   }
