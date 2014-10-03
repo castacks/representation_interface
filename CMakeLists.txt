@@ -9,7 +9,6 @@ SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -frounding-math")
 find_package(catkin REQUIRED COMPONENTS
   cmake_modules
   roscpp
-  perception_interface
 )
 
 find_package(Eigen REQUIRED)
@@ -94,8 +93,8 @@ set(CMAKE_BUILD_TYPE "Debug")
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
   INCLUDE_DIRS include
-  LIBRARIES nea_obstacle_grid_representation nea_distance_map_representation
-  CATKIN_DEPENDS roscpp perception_interface
+  #LIBRARIES nea_obstacle_grid_representation nea_distance_map_representation
+  CATKIN_DEPENDS roscpp
   #DEPENDS system_lib
 )
 
@@ -109,17 +108,6 @@ catkin_package(
 include_directories(
   ${catkin_INCLUDE_DIRS}
   include
-)
-
-
-add_library(nea_obstacle_grid_representation src/nea_obstacle_grid_representation_interface.cpp)
-target_link_libraries(nea_obstacle_grid_representation
-  ${catkin_LIBRARIES}
-)
-
-add_library(nea_distance_map_representation src/nea_distance_map_representation_interface.cpp)
-target_link_libraries(nea_distance_map_representation
-  ${catkin_LIBRARIES}
 )
 
 ## Add cmake target dependencies of the executable/library
