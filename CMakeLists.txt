@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(representation_interface)
 
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -frounding-math")
+#SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -frounding-math")
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -18,7 +18,6 @@ include_directories(${Eigen_INCLUDE_DIRS})
 #set(QT_USE_QTNETWORK TRUE)
 #set(QT_DONT_USE_QTGUI TRUE)
 
-set(CMAKE_BUILD_TYPE "Debug")
 #include(${QT_USE_FILE})
 #add_definitions(${QT_DEFINITIONS})
 #include_directories(${CMAKE_BINARY_DIR})
