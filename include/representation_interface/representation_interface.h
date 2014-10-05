@@ -30,6 +30,13 @@ class RepresentationInterface{
   RepresentationInterface() {};
   virtual ~RepresentationInterface() {};
 
+  /**
+   * \brief initializes the interface class returns false if can't initialize
+   * @param
+   * @return true if initialization was successful, false otherwise
+   */
+  virtual bool Initialize()=0;
+
   /** \brief Get value at query location.
    *
    * @param query Eigen column vector representing a general query
@@ -102,13 +109,6 @@ class RepresentationInterface{
    * @return the frames in which the representation exists
    */
   virtual std::string get_frame()=0;
-
-  /**
-   * \brief initializes the interface class returns false if can't initialize
-   * @param
-   * @return true if initialization was successful, false otherwise
-   */
-  virtual bool initialize()=0;
 };
 
 }  // namepsace ca

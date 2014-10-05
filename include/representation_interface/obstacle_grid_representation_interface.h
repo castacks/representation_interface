@@ -77,17 +77,26 @@ class ObstacleGridRepresentationInterface: public RepresentationInterface<double
                                              const bool greater,const double threshold)=0;
 
   /**
-    * \brief Returns the gradient at a vector of query locations
+    * \brief Returns the gradient at a vector of query locations (NORMALIZED)
     * @param query vector of vectorxd
     * @return gradients in form of vector of vectorxd
     */
    virtual std::vector<std::pair<Eigen::Vector3d,bool> > GetGradient(const std::vector<Eigen::Vector3d> &query)=0;
  /**
-   * \brief Returns the gradient at a  query locations
+   * \brief Returns the gradient at a  query locations (NORMALIZED)
+   * If the gradient is meaningless it will be 0 0 0
    * @param query
-   * @return gradient
+   * @return valid or not?
    */
   virtual bool GetGradient(const Eigen::Vector3d &query, Eigen::Vector3d &value)=0;
+
+/** (Sankalp should this go up to representation?)
+ * \brief Gets the max value (occupancy or max distance)
+ * @param query
+ * @param val
+ * @return valid or not?
+ */
+  virtual bool GetMaxValue(const Eigen::Vector3d &query, double &val) = 0;
 };
 
 }  // namespace representation_interface
