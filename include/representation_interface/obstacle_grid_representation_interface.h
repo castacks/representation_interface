@@ -23,6 +23,18 @@ namespace representation_interface{
  */
 typedef std::pair <std::vector<double>, bool> CollisionCheckReturn;
 
+
+/*
+ * type declaration for response to line collision queries, the first member of
+ *  the struct is a vector of checked points, second stores the values encountered 
+ *	while collision checking, the third member is true if a collision occurs
+ */
+struct LineCollisionCheckReturn {
+	std::vector<Eigen::Vector3d> points_checked;
+	std::vector<double> values;
+	bool collision;
+};
+
 /**
  * \brief This is an interface class that captures how modules
  * generally interact with the a world grid representation that
@@ -71,9 +83,9 @@ class ObstacleGridRepresentationInterface: public RepresentationInterface<double
    *         reverted to lesser than
    *         - threshold below which or greater than which collision is detected
    *
-   * @return CollisionCheckReturn, look at typedef definition for details
+   * @return LineCollisionCheckReturn, look at typedef definition for details
    */
-  virtual CollisionCheckReturn CollisionCheckLine(const Eigen::Vector3d &start,const Eigen::Vector3d &end,
+  virtual LineCollisionCheckReturn CollisionCheckLine(const Eigen::Vector3d &start,const Eigen::Vector3d &end,
                                              const bool greater,const double threshold)=0;
 
   /**
