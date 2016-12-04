@@ -1,3 +1,14 @@
+/** * @author: AirLab / Field Robotics Center
+ *
+ * @attention Copyright (C) 2016
+ * @attention Carnegie Mellon University
+ * @attention All rights reserved
+ *
+ * @attention LIMITED RIGHTS:
+ * @attention The US Government is granted Limited Rights to this Data.
+ *            Use, duplication, or disclosure is subject to the
+ *            restrictions as stated in Agreement AFS12-1642.
+ */
 /* Copyright 2014 Sankalp Arora
  * cost_map.h
  *
