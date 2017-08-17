@@ -38,8 +38,8 @@ namespace representation_interface{
 template <class T,int N>
 class RepresentationInterface{
  public:
-  RepresentationInterface() {};
-  virtual ~RepresentationInterface() {};
+  RepresentationInterface() {}
+  virtual ~RepresentationInterface() {}
 
   /**
    * \brief initializes the interface class returns false if can't initialize
