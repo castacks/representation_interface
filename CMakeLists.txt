@@ -21,7 +21,7 @@ include_directories(${Eigen_INCLUDE_DIRS})
 #include(${QT_USE_FILE})
 #add_definitions(${QT_DEFINITIONS})
 #include_directories(${CMAKE_BINARY_DIR})
-#include_directories(${QT_INCLUDE_DIR})  
+#include_directories(${QT_INCLUDE_DIR})
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -94,7 +94,7 @@ catkin_package(
   INCLUDE_DIRS include
   #LIBRARIES nea_obstacle_grid_representation nea_distance_map_representation
   CATKIN_DEPENDS roscpp
-  #DEPENDS system_lib
+  DEPENDS Eigen
 )
 
 ###########
@@ -105,8 +105,8 @@ catkin_package(
 ## Your package locations should be listed before other locations
 # include_directories(include)
 include_directories(
-  ${catkin_INCLUDE_DIRS}
   include
+  ${catkin_INCLUDE_DIRS}
 )
 
 ## Add cmake target dependencies of the executable/library
@@ -164,6 +164,3 @@ ENDIF()
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
-
-
-

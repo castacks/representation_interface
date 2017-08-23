@@ -16,8 +16,8 @@
  *      Author: Sankalp Arora
  */
 
-#ifndef REPRESENTATION_INTERFACE_INCLUDE_REPRESENTATION_INTERFACE_BASE_H
-#define REPRESENTATION_INTERFACE_INCLUDE_REPRESENTATION_INTERFACE_BASE_H
+#ifndef REPRESENTATION_INTERFACE_INCLUDE_DUMMY_REPRESENTATION_INTERFACE_H
+#define REPRESENTATION_INTERFACE_INCLUDE_DUMMY_REPRESENTATION_INTERFACE_H
 
 #include <Eigen/Dense>
 #include <vector>
@@ -83,7 +83,7 @@ class DummyRepresentationInterface: public RepresentationInterface<double,3>{
    * @param query a vector of Eigen columns vector representing general query indices.
    * @return a vector of values at query locations.
    */
-  virtual std::vector<std::pair<T, bool> > GetValue(const std::vector<Eigen::Matrix<int, N, 1> > &query) = 0;
+  virtual std::vector<std::pair<double, bool> > GetValue(const std::vector<Eigen::Vector3i > &query){ }
   /**
    * \brief Is the query location valid.
    * @param query
